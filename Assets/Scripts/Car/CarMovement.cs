@@ -21,8 +21,12 @@ public class CarMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        transform.position += new Vector3(0f, 0f, carSpeed * Time.deltaTime);
+        MoveCar();
+        CheckCarGas();
+        CheckPassengers();
     }
+
+
 
     #endregion
 
@@ -30,7 +34,17 @@ public class CarMovement : MonoBehaviour
 
     private void MoveCar()
     {
+        transform.position += new Vector3(0f, 0f, carSpeed * Time.deltaTime);
+    }
 
+    private void CheckPassengers()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void CheckCarGas()
+    {
+        throw new NotImplementedException();
     }
 
     #endregion
