@@ -1,10 +1,19 @@
+// This script moves the player. It displaces the transform for movement. It does not use rigidody
+
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    #region VARIABLES
+    #region REFERENCES
 
+    private Rigidbody _rb;
+
+    #endregion
+
+    #region VARIABLES
+    
     public float Speed;
+    public float RotationSpeed;
 
     [SerializeField] private Vector2 _inputVector;
     [SerializeField] private Vector3 _movementVector;
@@ -13,10 +22,16 @@ public class PlayerMovement : MonoBehaviour
 
     #region MONOBEHAVIOUR
 
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody>();
+    }
+
     private void Update()
     {
         GetInput();
-        GenerateMovementVector();
+        RotateCharacter();
+        //GenerateMovementVector();
         MoveCharacter();
     }
 
@@ -32,6 +47,11 @@ public class PlayerMovement : MonoBehaviour
         _inputVector = new Vector2(horizontalInput, verticalInput);
     }
 
+    private void RotateCharacter()
+    {
+        transform.rotation *= Quaternion.Euler(new Vector3(0f, _inputVector.x * RotationSpeed * Time.deltaTime, 0f));
+    }
+
     private void GenerateMovementVector()
     {
         _movementVector = new Vector3(_inputVector.x, 0f, _inputVector.y);
@@ -39,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveCharacter()
     {
-        transform.position += _movementVector * Speed * Time.deltaTime;
+        _rb.velocity = transform.forward * Speed * _inputVector.y;
     }
 
     #endregion
