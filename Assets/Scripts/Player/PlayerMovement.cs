@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     {
         GetInput();
         RotateCharacter();
-        //GenerateMovementVector();
         MoveCharacter();
     }
 
@@ -50,11 +49,6 @@ public class PlayerMovement : MonoBehaviour
     private void RotateCharacter()
     {
         transform.rotation *= Quaternion.Euler(new Vector3(0f, _inputVector.x * RotationSpeed * Time.deltaTime, 0f));
-    }
-
-    private void GenerateMovementVector()
-    {
-        _movementVector = new Vector3(_inputVector.x, 0f, _inputVector.y);
     }
 
     private void MoveCharacter()
