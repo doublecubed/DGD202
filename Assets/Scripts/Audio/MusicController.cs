@@ -49,6 +49,11 @@ public class MusicController : MonoBehaviour
 
         uiButton.sprite = (value <= 0f) ? mutedMusic : playingMusic;
     }
+
+    public void SetAudioVolumeDummy(int value, string what)
+    {
+        
+    }
     
     #region Obsolete
     
