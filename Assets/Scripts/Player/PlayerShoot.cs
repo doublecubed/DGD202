@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
@@ -8,6 +5,7 @@ public class PlayerShoot : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform spawnPoint;
     public float projectileSpeed;
+    public PlayerInventory inventoryScript;
     
     
     private void Update()
@@ -18,6 +16,7 @@ public class PlayerShoot : MonoBehaviour
 
             Projectile projectileScript = newProjectile.GetComponent<Projectile>();
             projectileScript.SetSpeed(projectileSpeed);
+            projectileScript.inventoryScript = inventoryScript;
         }
     }
 }
